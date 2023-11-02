@@ -1,0 +1,14 @@
+--- a/net/minecraft/util/datafix/fixes/FixProjectileStoredItem.java
++++ b/net/minecraft/util/datafix/fixes/FixProjectileStoredItem.java
+@@ -54,8 +54,10 @@
+ 
+     private static <T> Function<Typed<?>, Typed<?>> fixChoiceCap(String string, FixProjectileStoredItem.SubFixer<?> subFixer, Type<?> type, Type<T> type1) {
+         OpticFinder<?> opticFinder = DSL.namedChoice(string, type);
+-        return typed -> typed.updateTyped(opticFinder, type1, typed1 -> subFixer.fix(typed1, type1));
++//        return typed -> typed.updateTyped(opticFinder, type1, typed1 -> subFixer.fix(typed1, type1)); //TODO: fix this one
++        return Function.identity();
+     }
++    
+ 
+     private static <T> Typed<T> fixArrow(Typed<?> typed, Type<T> type) {
+         return (Typed<T>)Util.getOrThrow(
