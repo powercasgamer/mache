@@ -1,22 +1,17 @@
 --- a/net/minecraft/commands/execution/tasks/BuildContexts.java
 +++ b/net/minecraft/commands/execution/tasks/BuildContexts.java
-@@ -50,9 +50,9 @@
+@@ -50,9 +50,8 @@
                      if (topContext.isForked()) {
                          chainModifiers1 = chainModifiers1.setForked();
                      }
 -
-+//                    flag1 |= topContext.isForked();
                      RedirectModifier<T> redirectModifier = topContext.getRedirectModifier();
 -                    if (redirectModifier instanceof CustomModifierExecutor<T> customModifierExecutor) {
 +                    if (redirectModifier instanceof CustomModifierExecutor.ModifierAdapter<T> customModifierExecutor) {
                          customModifierExecutor.apply(
                              executionCommandSource, list1, contextChain, chainModifiers1, ExecutionControl.create(executionContext, frame)
                          );
-@@ -86,17 +86,16 @@
-                     }
-                 }
-             } finally {
--                executionContext.profiler().pop();
+@@ -90,13 +89,13 @@
              }
          }
  
